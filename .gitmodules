@@ -4,3 +4,6 @@
 [submodule "sa"]
 	path = sa
 	url = https://github.com/GNITOAHC/DigitalAnnealer.git
+[submodule "sse"]
+	path = sse
+	url = https://github.com/GNITOAHC/sse-annealer.git
