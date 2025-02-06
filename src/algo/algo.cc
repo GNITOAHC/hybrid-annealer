@@ -5,7 +5,7 @@
 // #include <variant>
 
 int execute (int argc, char **argv, int& iter, std::string algo) {
-    clap::Clap clap;
+    // clap::Clap clap;
     // clap.parse(argc, argv, iter);
 
     // if (clap.hasArg("file")) {
@@ -16,8 +16,8 @@ int execute (int argc, char **argv, int& iter, std::string algo) {
     // const std::string algo = clap.getPosArg(1);
     // printf("Algo: %s\n", algo.c_str());
 
-    const std::string sa_exe  = "./sa";
-    const std::string sse_exe = "./sse";
+    const std::string sa_exe  = "./bin/sa";
+    const std::string sse_exe = "./bin/sse";
 
     const int child_argc = argc - iter;
     char **child_argv    = new char *[child_argc + 2];
@@ -41,12 +41,12 @@ int execute (int argc, char **argv, int& iter, std::string algo) {
     // printf("Iter: %d\n", iter);
     if (algo == "sa") {
         printf("Simulated Annealing\n");
-        clap.setParams(saParams);
-        clap.parse(argc, argv, iter);
-        if (clap.hasArg("help")) {
-            clap.help();
-            return 0;
-        }
+        // clap.setParams(saParams);
+        // clap.parse(argc, argv, iter);
+        // if (clap.hasArg("help")) {
+        //     clap.help();
+        //     return 0;
+        // }
 
         if (execv(sa_exe.c_str(), child_argv) == -1) {
             perror("execv");
@@ -54,14 +54,14 @@ int execute (int argc, char **argv, int& iter, std::string algo) {
         }
     } else if (algo == "sse") {
         printf("Simulated Synchronous Annealing\n");
-        clap.setParams(sseParams);
-        clap.parse(argc, argv, iter);
-        if (clap.hasArg("help")) {
-            clap.help();
-            return 0;
-        }
+        // clap.setParams(sseParams);
+        // clap.parse(argc, argv, iter);
+        // if (clap.hasArg("help")) {
+        //     clap.help();
+        //     return 0;
+        // }
 
-        if (execv(sa_exe.c_str(), child_argv) == -1) {
+        if (execv(sse_exe.c_str(), child_argv) == -1) {
             perror("execv");
             return 1;
         }

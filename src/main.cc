@@ -1,30 +1,35 @@
-#include "../include/clap.h"
+#include "../include/argparse.h"
 #include "./algo/algo.h"
-// #include <iostream>
-
-// clang-format off
-const std::string clapParams = 
-    "Program: main\n"
-    "Version: 0.1.0\n"
-    "Description: Digital Annealer V2\n"
-    "-h, --help Show help message\n"
-    "<command> Either 'sa' or 'sse'. For more information for both method, use `./main <method> --help`\n";
-// clang-format on
 
 int main (int argc, char **argv) {
-    clap::Clap clap(clapParams);
-    int iter;
-    clap.parse(argc, argv, iter, 1);
+    argparse::ArgumentParser program("main");
+    argparse::ArgumentParser sse_command("sse", "1.0", argparse::default_arguments::none);
+    argparse::ArgumentParser sa_command("sa", "1.0", argparse::default_arguments::none);
 
-    std::string algo = clap.getPosArg(0);
-    // printf("Algo: %s\n", algo.c_str());
+    program.add_subparser(sse_command);
+    program.add_subparser(sa_command);
 
-    if (clap.hasArg("help")) {
-        clap.help();
-        return 0;
+    try {
+        program.parse_known_args(argc, argv);
+    } catch (const std::exception& err) {
+        std::cout << err.what() << std::endl;
+        std::cout << program;
+        return 1;
     }
 
+    std::string algo = "none";
+    if (program.is_subcommand_used("sse")) {
+        std::cout << "SSE" << std::endl;
+        algo = "sse";
+    } else if (program.is_subcommand_used("sa")) {
+        std::cout << "SA" << std::endl;
+        algo = "sa";
+    }
+
+    // std::cout << "Algo: " << program.get<std::string>("algo") << std::endl;
+
     // printf("Iter: %d\n", iter);
+    int iter = 2;
     const int ret = execute(argc, argv, iter, algo);
     if (ret == 1) {
         std::cout << "Error: " << ret << std::endl;
