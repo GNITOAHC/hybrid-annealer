@@ -1,3 +1,6 @@
 [submodule "argparse"]
 	path = argparse
 	url = https://github.com/p-ranav/argparse.git
+[submodule "sa"]
+	path = sa
+	url = https://github.com/GNITOAHC/DigitalAnnealer.git
