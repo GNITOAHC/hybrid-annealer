@@ -19,12 +19,22 @@ int execute (int argc, char **argv, int& iter, std::string algo) {
     const std::string sa_exe  = "./bin/sa";
     const std::string sse_exe = "./bin/sse";
 
+    std::string exe = "";
+    if (algo == "sa") {
+        exe = sa_exe;
+    } else if (algo == "sse") {
+        exe = sse_exe;
+    } else {
+        printf("Unknown algorithm\n");
+        return 1;
+    }
+
     const int child_argc = argc - iter;
     char **child_argv    = new char *[child_argc + 2];
 
-    child_argv[0] = new char[sa_exe.length() + 1];
-    for (int i = 0; i < sa_exe.length(); ++i) {
-        child_argv[0][i] = sa_exe[i];
+    child_argv[0] = new char[exe.length() + 1];
+    for (int i = 0; i < exe.length(); ++i) {
+        child_argv[0][i] = exe[i];
     }
 
     for (int i = 0; i < child_argc; ++i) {
