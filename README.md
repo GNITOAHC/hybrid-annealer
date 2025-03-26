@@ -1,4 +1,4 @@
-# Digital Annealer V2
+# Hybrid Annealer
 
 Run `sh compile.sh` to build.
 
