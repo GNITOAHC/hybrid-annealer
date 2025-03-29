@@ -3,7 +3,7 @@
 CC = g++
 CFLAGS = -Wall -O3 -std=c++20
 
-TARGET = main
+TARGET = bin/main
 
 # Define paths
 SRC_DIR = src
@@ -17,14 +17,12 @@ OBJS = $(SRCS:$(SRC_DIR)/%.cc=$(BUILD_DIR)/%.o) # Convert .cc files to .o files 
 HEADER_DIRS = $(shell find $(SRC_DIR) -type d -print)
 INCLUDES = $(addprefix -I, $(HEADER_DIRS))
 
-# #defines to the program
-DEFS =
-
 # Default target
 all: $(TARGET)
 
 # ===== Main target rule
 $(TARGET): $(OBJS)
+	mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(INCLUDES) -o $(TARGET) $(OBJS) -L$(BUILD_DIR)
 
 # Generic rule for .cc to .o
@@ -33,6 +31,6 @@ $(BUILD_DIR)/%.o: $(SRC_DIR)/%.cc
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@ $(DEFS)
 
 clean:
-	$(RM) -r $(BUILD_DIR) $(TARGET) $(MPI_TARGET)
+	$(RM) -r $(BUILD_DIR) $(TARGET)
 
 .PHONY: all clean

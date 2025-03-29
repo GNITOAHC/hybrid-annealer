@@ -1,12 +1,12 @@
 #!/bin/bash
 
 # Clean the sa directory
-cd sa && make clean
+cd digital-annealer && make clean
 cd ..
 
 # Clean the sse directory
-rm -r ./sse/bin
-rm -r ./sse/obj
+cd sse-annealer && make clean
+cd ..
 
 # Clean the main directory
 rm -r bin

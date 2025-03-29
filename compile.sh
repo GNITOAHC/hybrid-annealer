@@ -3,13 +3,13 @@
 mkdir -p bin
 
 # Make sa binary and copy it to bin directory
-cd sa && make
+cd digital-annealer && make
 cd ..
-mv ./sa/main_exe ./bin/sa
+mv ./digital-annealer/bin/main ./bin/sa
 
 # Make sse binary and copy it to bin directory
-cd sse && /bin/bash compile.sh
+cd sse-annealer && make
 cd ..
-mv ./sse/bin/main ./bin/sse
+mv ./sse-annealer/bin/main ./bin/sse
 
 make
