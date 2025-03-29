@@ -1,9 +1,9 @@
 [submodule "argparse"]
 	path = argparse
 	url = https://github.com/p-ranav/argparse.git
-[submodule "sa"]
-	path = sa
-	url = https://github.com/GNITOAHC/DigitalAnnealer.git
 [submodule "sse"]
 	path = sse
 	url = https://github.com/GNITOAHC/sse-annealer.git
+[submodule "digital-annealer"]
+	path = digital-annealer
+	url = https://github.com/GNITOAHC/digital-annealer.git
